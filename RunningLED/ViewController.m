@@ -33,9 +33,6 @@
                  withTag: (int)tag{
     UIImageView* ball = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"orange"]];
     ball.center = CGPointMake(x, y);
-//    _diameter = ball.bounds.size.width;
-//    NSLog(@"width ball = %3.0f", _diameter);
-//    _margin = _diameter + 10.0;
     ball.tag = tag;
     [self.view addSubview:ball];
 }
@@ -45,7 +42,7 @@
     for (int i = 0; i < numberBalls; i++) {
         [self placeGreyBallAtX:i * space + _margin
                           andY:140
-                       withTag:1];
+                       withTag:i + 2];
     }
 }
 
@@ -56,7 +53,7 @@
         for (int i = 0; i < numberBalls; i++) {
             [self placeGreyBallAtX:i * _space + _margin
                               andY:j * _space + _margin
-                           withTag:1];
+                           withTag:i + 2];
         }
     }
     
