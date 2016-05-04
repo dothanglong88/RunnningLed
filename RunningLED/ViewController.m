@@ -22,6 +22,7 @@
     int _lastOnLED;
     int _ledBetween;
     int _ledLeft;
+    int _allBall;
 }
 
 - (void)viewDidLoad {
@@ -32,13 +33,14 @@
     _lastOnLED = -1;
     _ledLeft = -1;
     _ledBetween = _numberofBall/2;
+    _allBall = 0;
     
 //    [self drawRowofBalls:_numberofBall];
     
     //  ----------------------- SHOW LED FULL SCREEN
     
 //  // Truyền số lượng đèn Led
-        [self drawBallFullWidthAndHeight:_numberofBall];
+    [self drawBallFullWidthAndHeight:_numberofBall];
     
     
 //  // Full IconLed theo kích cỡ màn hình
@@ -120,6 +122,9 @@
 }
 
 -(void) runningLEDLeftToRight{
+    if (_allBall != 0){
+        _numberofBall = _allBall;
+    }
     if (_lastOnLED != -1){
         [self turnOFFLed:_lastOnLED];
     }
@@ -187,6 +192,7 @@
             [self placeGreyBallAtX:i * space + _margin
                               andY:j * space + _margin
                            withTag:i + 100 + j*_numberofBall ];
+            _allBall++;
         }
     }
     
