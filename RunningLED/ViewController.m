@@ -33,12 +33,12 @@
     _ledLeft = -1;
     _ledBetween = _numberofBall/2;
     
-    [self drawRowofBalls:_numberofBall];
+//    [self drawRowofBalls:_numberofBall];
     
-    // SHOW LED
+    //  ----------------------- SHOW LED FULL SCREEN
     
 //  // Truyền số lượng đèn Led
-    //    [self drawBallFullWidthAndHeight:_numberofBall];
+        [self drawBallFullWidthAndHeight:_numberofBall];
     
     
 //  // Full IconLed theo kích cỡ màn hình
@@ -47,7 +47,9 @@
    
     
     
-    // RUNNING LED
+    //  ----------------------- RUNNING LED
+    
+    //  ---- 1 dong
     
 //    //trai sang phai
 //    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runningLEDLeftToRight) userInfo:nil repeats:true];
@@ -58,10 +60,31 @@
 //    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runningLEDRightToLeft) userInfo:nil repeats:true];
     
     
-    //giua ra
-    NSLog(@"led between: %d" , _ledBetween);
-    _lastOnLED = _ledBetween;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(runningLEDBetween) userInfo:nil repeats:true];
+//    //giua ra
+//    NSLog(@"led between: %d" , _ledBetween);
+//    _lastOnLED = _ledBetween;
+//    _timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(runningLEDBetween) userInfo:nil repeats:true];
+    
+    
+    
+    //  ---- Nhieu dong
+    
+//    //trai sang phai
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runningLEDLeftToRight) userInfo:nil repeats:true];
+
+}
+
+-(void) runningLEDLeftToRightFull{
+    if (_lastOnLED != -1){
+        [self turnOFFLed:_lastOnLED];
+    }
+    
+    if (_lastOnLED != _numberofBall -1){
+        _lastOnLED ++;
+    }else{
+        _lastOnLED = 0;
+    }
+    [self turnONLed:_lastOnLED];
 }
 
 - (void) runningLEDBetween{
@@ -150,7 +173,7 @@
         for (int i = 0; i < numberBalls; i++) {
             [self placeGreyBallAtX:i * _space + _margin
                               andY:j * _space + _margin
-                           withTag:i + 100];
+                           withTag:i + 100 + j*_numberofBall ];
         }
     }
     
@@ -163,7 +186,7 @@
         for (int i = 0; i < numberBalls; i++) {
             [self placeGreyBallAtX:i * space + _margin
                               andY:j * space + _margin
-                           withTag:i + 100];
+                           withTag:i + 100 + j*_numberofBall ];
         }
     }
     
